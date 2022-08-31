@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_in_wizard_form_view" model="ir.ui.view">
+            <field name="name">Purchase request</field>
+            <field name="model">reject.reason</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date"/>
+                        <field name="reason"/>
+                    </group>
+                    <footer>
+                        <button name="confirm" string="Confirm" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="reject_reason_action" model="ir.actions.act_window">
+            <field name="name">Reject reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reject.reason</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

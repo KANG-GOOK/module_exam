@@ -1,0 +1,267 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* z_com_import_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-21 18:07+0000\n"
+"PO-Revision-Date: 2019-03-21 18:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__access_token
+msgid "Access Token"
+msgstr "Token truy cập"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__active
+msgid "Active"
+msgstr "Có hiệu lực"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__local_url
+msgid "Attachment URL"
+msgstr "URL Đính kèm"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__attachment_id
+msgid "Automatically created field to link to parent ir.attachment"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__checksum
+msgid "Checksum/SHA1"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__create_date
+msgid "Created on"
+msgstr "Thời điểm tạo"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__db_datas
+msgid "Database Data"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__description
+msgid "Description"
+msgstr "Miêu tả"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form_warning
+msgid "Error File"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__error_message
+msgid "Error Message"
+msgstr "Thông điệp lỗi"
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form
+msgid "File"
+msgstr "Tập tin"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__datas
+msgid "File Content"
+msgstr "Nội dung tập tin"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__file_size
+msgid "File Size"
+msgstr "Dung lượng tập tin"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__datas_fname
+msgid "Filename"
+msgstr "Tên tập tin"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__import_date
+msgid "Import Date"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.sale_order_form_view_import_line
+msgid "Import SO Line"
+msgstr "Import Đơn Hàng"
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form
+msgid "Import Sale Order"
+msgstr "Nhập Chi Tiết Đơn Hàng"
+
+#. module: z_com_import_sale_order
+#: model:ir.ui.menu,name:z_com_import_sale_order.z_menu_wizard_import_sale_order_by_excel
+msgid "Import sale order"
+msgstr "Import Đơn hàng"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__index_content
+msgid "Indexed Content"
+msgstr "Nội dung được đánh chỉ mục"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__public
+msgid "Is public document"
+msgstr "Là tài liệu chung"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối vào"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__mimetype
+msgid "Mime Type"
+msgstr "Loại Mime"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form_warning
+msgid "OK"
+msgstr "Đồng ý"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__order_id
+msgid "Order"
+msgstr "Lệnh"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__res_model_name
+msgid "Res Model Name"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__res_field
+msgid "Resource Field"
+msgstr "Trường tài nguyên"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__res_id
+msgid "Resource ID"
+msgstr "ID Tài nguyên"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__res_model
+msgid "Resource Model"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__res_name
+msgid "Resource Name"
+msgstr "Tên Tài nguyên"
+
+#. module: z_com_import_sale_order
+#: model:ir.model,name:z_com_import_sale_order.model_sale_order
+msgid "Sale Order"
+msgstr "Đơn hàng Bán"
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form
+msgid "Select file import (file extension .xls):"
+msgstr "Lựa chọn tệp tin để import (kiểu tệp tin: .xls)"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__store_fname
+msgid "Stored Filename"
+msgstr "Tên tệp tin được lưu trữ"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__template_file_url_default
+msgid "Template File URL"
+msgstr "File Mẫu"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,help:z_com_import_sale_order.field_wizard_import_sale_order_line__res_model
+msgid "The database object this attachment will be attached to."
+msgstr "Đối tượng cơ sở dữ liệu tệp đính kèm này sẽ được đính kèm."
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,help:z_com_import_sale_order.field_wizard_import_sale_order_line__res_id
+msgid "The record id this is attached to."
+msgstr "Mã dữ liệu này được đính kèm với."
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__thumbnail
+msgid "Thumbnail"
+msgstr "Hình nhỏ"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__type
+msgid "Type"
+msgstr "Loại"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,field_description:z_com_import_sale_order.field_wizard_import_sale_order_line__url
+msgid "Url"
+msgstr ""
+
+#. module: z_com_import_sale_order
+#: model:ir.model,name:z_com_import_sale_order.model_wizard_import_sale_order
+msgid "Wizard import sale order"
+msgstr "Wizard import đơn hàng"
+
+#. module: z_com_import_sale_order
+#: model:ir.model.fields,help:z_com_import_sale_order.field_wizard_import_sale_order_line__type
+msgid "You can either upload a file from your computer or copy/paste an internet link to your file."
+msgstr "Bạn có thể tải lên một tệp từ máy tính của bạn hoặc sao chép / dán liên kết internet vào tệp của bạn."
+
+#. module: z_com_import_sale_order
+#: model_terms:ir.ui.view,arch_db:z_com_import_sale_order.wizard_import_sale_order_line_view_form
+msgid "or"
+msgstr "hoặc"
+
+#. module: z_com_import_sale_order
+#: model:ir.model,name:z_com_import_sale_order.model_wizard_import_sale_order_line
+msgid "wizard.import.sale.order.line"
+msgstr ""
+

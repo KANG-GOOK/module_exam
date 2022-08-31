@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_import_purchase_request_line_view_form" model="ir.ui.view">
+        <field name="name">wizard_import_purchase_request_line_view_form</field>
+        <field name="model">wizard.import.purchase.request.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="template_file_url_default" widget="url"
+                           nolabel="True" readonly="1"/>
+                </group>
+                <!--<h4>Select file import (file extension .xls):</h4>-->
+                <group>
+                    <field name="datas" string="File" filename="name" widget="binary"/>
+                    <field name="name" invisible="1"/>
+                    <field name="import_date" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <field name="purchase_id" invisible="1"/>
+                </group>
+                <group>
+                </group>
+                <footer>
+                    <button name="action_import_so_line" type="object" string="Import Sale Order"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_import_purchase_request_line_view_form_warning" model="ir.ui.view">
+        <field name="name">wizard_import_purchase_request_line_view_form_warning</field>
+        <field name="model">wizard.import.purchase.request.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="error_message" readonly="1" nolabel="1"/>
+                        </group>
+                        <group>
+                        </group>
+                        <field name="datas" readonly="1" filename="name" string="Error File"/>
+                        <field name="name" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="OK" class="oe_highlight" name="action_button_ok" type="object"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--        Thêm menu truy cập model thông qua action-->
+    <menuitem name="PURCHASES MANAGEMENT"
+              id="purchases_menu_root"/>
+
+    <!--    Purchases Request-->
+    <menuitem id="purchases_menu"
+              action="purchase_request_action"
+              parent="purchases_menu_root"
+              name="Purchases Request"
+              sequence="1"/>
+
+
+    <!--        Thêm dữ liệu vào bản ghi action-->
+    <record id="purchase_request_action" model="ir.actions.act_window">
+        <field name="name">Purchase request</field>
+        <field name="res_model">purchase.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--    Thêm tree-->
+    <record id="purchase_request_view_tree" model="ir.ui.view">
+        <field name="name">purchase.request.tree</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Request Tree">
+                <field name="name"/>
+                <field name="requests_by"/>
+                <field name="department"/>
+                <field name="company"/>
+                <field name="cost_total"/>
+                <field name="creation_date"/>
+                <field name="due_date"/>
+                <field name="approved_date"/>
+                <field name="reject_reason"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--            Thêm form view-->
+    <record id="purchase_request_view_form" model="ir.ui.view">
+        <field name="name">purchase.request.form</field>
+        <field name="model">purchase.request</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Request Form">
+                <header>
+                    <button name="request_approval" string="Gửi duyệt" type="object" class="btn-primary" state="1"
+                            attrs="{'invisible': [('state','!=','1')]}"
+                            confirm="Bạn muốn gửi đơn đến admin để duyệt"/>
+                    <button name="phe_duyet" string="Phê duyệt" type="object" class="btn-primary" state=""
+                            attrs="{'invisible': [('state','!=','2')]}"
+                            groups="purchases.purchase_request_group_admin"
+                            confirm="Bạn muốn phê duyệt"/>
+                    <button name="hoan_thanh" string="Hoàn thành" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','3')]}"
+                            groups="purchases.purchase_request_group_user"
+                            confirm="Bạn muốn hoàn thành"/>
+                    <button name="cancel_" string="Cancel" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','3')]}"
+                            groups="purchases.purchase_request_group_user"
+                            confirm="Bạn muốn dừng"/>
+                    <button name="tu_choi" string="Từ chối" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','2')]}"
+                            groups="purchases.purchase_request_group_admin"
+                            confirm="Bạn muốn từ chối"/>
+                    <button name="chuyen_ve_du_thao" string="Chuyển về dự thảo" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','in',['1', '2', '3', '4'])]}"
+                            groups="purchases.purchase_request_group_user"
+                            confirm="Bạn muốn chuyển về dự thảo"/>
+                    <button name="button_open_wizard_import_purchase_request" type="object" string="Import EXCEL"
+                            state="1"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+
+                    <div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="requests_by"
+                                   attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}"/> <!-- người tạo -->
+                            <field name="department"
+                                   attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}"/> <!-- bộ phận người tạo -->
+                            <field name="company"
+                                   attrs="{'readonly':[('state','in',['2', '3', '4', '5'])]}"/> <!-- Công ty -->
+                            <field name="cost_total"
+                                   attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}"/>
+
+                        </group>
+                        <group>
+                            <field name="creation_date"
+                                   attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}"/> <!-- NGày yêu cầu -->
+                            <field name="due_date"
+                                   attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}"/> <!-- NGày cần cấp -->
+                            <field name="approved_date"
+                                   attrs="{'readonly': [('state','in',['1','2', '3', '4', '5','6'])]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="purchase request line" name="purchase_request_lines">
+                                <field name="request_line" attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}">
+                                    <tree editable="bottom">
+                                        <field name="product"/>
+                                        <field name="unit_measure"/>
+                                        <field name="requests_quantity"/>
+                                        <field name="estimated_unit_price"/>
+                                        <field name="estimated_subtotal"/>
+                                        <field name="due_date"/>
+                                        <field name="description"/>
+                                        <!--                <field name="delivered_quantity"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="reject_reason"
+                                   attrs="{'invisible': [('state','in',['1', '2', '3', '4'])]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

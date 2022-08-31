@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--        Thêm dữ liệu vào bản ghi action-->
+    <record id="purchase_request_line_action" model="ir.actions.act_window">
+        <field name="name">Purchase request line</field>
+        <field name="res_model">purchase.request.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="purchases_request_line_menu"
+              action="purchase_request_line_action"
+              parent="purchases_menu_root"
+              name="Detail list"
+              sequence="2"/>
+
+    <!--    Thêm tree-->
+    <record id="purchase_request_line_view_tree" model="ir.ui.view">
+        <field name="name">purchase.request.line.tree</field>
+        <field name="model">purchase.request.line</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Request Line Tree">
+                <field name="product"/>
+                <field name="unit_measure"/>
+                <field name="requests_quantity"/>
+                <field name="estimated_unit_price"/>
+                <field name="estimated_subtotal"/>
+                <field name="due_date"/>
+                <field name="description"/>
+                <!--                <field name="delivered_quantity"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!--            Thêm form view-->
+    <record id="purchase_request_line_view_form" model="ir.ui.view">
+        <field name="name">purchase.request.line.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Request Line Form">
+                <sheet>
+                    <div>
+                        <h1>Create Product</h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product"/>
+                            <field name="unit_measure"/>
+                            <field name="requests_quantity"/>
+                            <field name="estimated_unit_price"/>
+                            <field name="estimated_subtotal"/>
+                        </group>
+                        <group>
+                            <field name="due_date"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
