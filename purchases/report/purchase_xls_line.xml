@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_xls_line_view_tree" model="ir.ui.view">
+            <field name="name">purchase_xls_line_view_tree</field>
+            <field name="model">purchase.xls.line</field>
+            <field name="arch" type="xml">
+                <tree string="purchase_xls_line_tree" delete="0" create="0">
+                    <field name="product_id"/>
+                    <field name="requested_id"/>
+<!--                    <field name="product_uom_id"/>-->
+                    <field name="creation_date"/>
+                    <field name="due_date"/>
+                    <field name="requests_quantity"/>
+                    <field name="estimated_unit_price"/>
+<!--                    <field name="estimated_subtotal"/>-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="purchase_xls_line_view_graph">
+            <field name="name">purchase_xls_line_view_graph</field>
+            <field name="model">purchase.xls.line</field>
+            <field name="arch" type="xml">
+                <graph string="Tổng hợp" type="bar" stacked="False">
+                    <field name="creation_date" type="col" interval="month"/>
+                    <field name="due_date" type="col" interval="month"/>
+                    <field name="product_id" type="measure" />
+                    <field name="requests_quantity" type="measure" />
+                </graph>
+            </field>
+        </record>
+    </data>
+</odoo>

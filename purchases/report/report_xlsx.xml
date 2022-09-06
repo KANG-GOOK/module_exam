@@ -3,7 +3,7 @@
 
     <report
             id="report_card_xls"
-            model="report.purchases.report_xlsx"
+            model="purchase.request"
             string="Excel"
             report_type="xlsx"
             name="purchases.report_xls"

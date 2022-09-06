@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="purchase_xls_wizard_form_view" model="ir.ui.view">
+            <field name="name">purchase.xls.wizard.form</field>
+            <field name="model">purchase.xls</field>
+            <field name="arch" type="xml">
+                <form string="Báo Cáo Yêu Cầu Mua Hàng">
+                    <group class="oe_title">
+                        <field name="creation_date"/>
+                        <field name="due_date"/>
+<!--                        <field name="purchase_request_id" invisible="1"/>-->
+                    </group>
+                    <footer>
+                        <button name="print_report" string="In Excel" type="object" class="btn-primary"/>
+                        <button name="view_report" string="Xem báo cáo" type="object" class="btn-primary"/>
+                        <button string="Hủy" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="purchase_xls_wizard_form_view_action" model="ir.actions.act_window">
+            <field name="name">Báo Cáo Yêu Cầu Mua Hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.xls</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_xls_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
