@@ -7,8 +7,8 @@ class PurchaseRequestLine(models.Model):
     _name = "purchase.request.line"
 
     # product_id = fields.Char(string='id')
-    product = fields.Many2one('product.product', string='Product')
-    unit_measure = fields.Many2one("uom.uom", string="Đơn vị tính", related='product.uom_id')
+    product_id = fields.Many2one('product.product', string='Product')
+    product_uom_id = fields.Many2one("uom.uom", string="Đơn vị tính",related='product_id.uom_id')
     requests_quantity = fields.Integer(string="Reqests of quantity", required=True)  # số lượng yêu cầu
     estimated_unit_price = fields.Integer(string="Estimated unit price")  # Đơn giá dự kiến
     estimated_subtotal = fields.Float(string="Estimated Subtotal", compute='_get_estimated_subtotal',

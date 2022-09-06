@@ -12,7 +12,6 @@
               name="Purchases Request"
               sequence="1"/>
 
-
     <!--        Thêm dữ liệu vào bản ghi action-->
     <record id="purchase_request_action" model="ir.actions.act_window">
         <field name="name">Purchase request</field>
@@ -108,8 +107,8 @@
                             <page string="purchase request line" name="purchase_request_lines">
                                 <field name="request_line" attrs="{'readonly': [('state','in',['2', '3', '4', '5'])]}">
                                     <tree editable="bottom">
-                                        <field name="product"/>
-                                        <field name="unit_measure"/>
+                                        <field name="product_id"/>
+                                        <field name="product_uom_id"/>
                                         <field name="requests_quantity"/>
                                         <field name="estimated_unit_price"/>
                                         <field name="estimated_subtotal"/>

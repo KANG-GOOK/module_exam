@@ -50,11 +50,16 @@ class WizardImportSaleOrderLine(models.TransientModel):
             else:
                 product = self.env['product.product'].search([('default_code', '=', str(row[0]).strip())])
                 if product:
-                    if row[1]:
-                        name = str(row[1])
-                    else:
-                        name = '[{}] {}'.format(product.default_code, product.name)
-                    value.update({'product_id': product[0].id, 'product': name, 'unit_measure': product[0].uom_id.id})
+                    # if row[1]:
+                    #     name = str(row[1])
+                    # else:
+                    #     name = '[{}] {}'.format(product.default_code, product.name)
+                    value.update({'product_id': product[0].id, 'product_uom_id': product[0].uom_id.id,
+                                  'requests_quantity': float(str(row[3]).replace(',', '.')),
+                                  'estimated_unit_price': float(str(row[4]).replace(',', '.')),
+                                  'estimated_subtotal': float(str(row[5]).replace(',', '.')),
+                                  'description': str(str(row[6]).replace(',', '.'))
+                                  })
                 else:
                     dict_error.update({row_number: dict_error.get(row_number, '') + '-' + _(
                         ' Không thể tìm thấy sản phẩm với mã {} trong hệ thống\n').format(row[0]) + ' ' * space})
