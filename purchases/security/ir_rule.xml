@@ -3,22 +3,30 @@
     <data>
         <record id="purchases_request_rule_user" model="ir.rule">
             <field name="name">Bản ghi người dùng</field>
-            <field name="model_id" ref="model_purchase_request"/>
-            <!--            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_user'))]"/>-->
-            <!--            <field name="domain_force">['|',('create_uid','=',user.id),('create_id','=',False)]</field>-->
-            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <field name="model_id" ref="purchases.model_purchase_request"/>
+            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_user'))]"/>
+            <field name="domain_force">['|',('requests_by.id','=',user.id),('requests_by.id','=',False)]</field>
+            <!--            <field name="domain_force">[('create_uid', '=', user.id)]</field>-->
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
         </record>
 
         <record id="purchase_rule_admin" model="ir.rule">
-            <field name="name">Admin Purchases</field>
-            <field name="model_id" ref="model_purchase_request"/>
-            <!--            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_admin'))]"/>-->
+            <field name="name">All Purchases</field>
+            <field name="model_id" ref="purchases.model_purchase_request"/>
+            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_admin'))]"/>
             <!--            <field name="domain_force">[('create_uid', '=', user.id)]</field>-->
-            <field name="domain_force">[('create_uid', '!=', user.id)]</field>
-<!--            <field name="perm_unlink" eval="1"/>-->
-<!--            <field name="perm_write" eval="1"/>-->
+<!--                        <field name="domain_force">[('create_uid', '!=', user.id)]</field>-->
 <!--            <field name="perm_read" eval="1"/>-->
+<!--            <field name="perm_write" eval="1"/>-->
 <!--            <field name="perm_create" eval="1"/>-->
+<!--            <field name="perm_unlink" eval="1"/>-->
+            <field name="domain_force">[(1,'=',1)]</field>
         </record>
+
+        <!--        report-->
+
     </data>
 </odoo>

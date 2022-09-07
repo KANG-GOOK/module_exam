@@ -6,26 +6,24 @@
         <field name="sequence">10</field>
     </record>
 
-    <record id="module_purchases_request_category_user" model="ir.module.category">
-        <field name="name">Purchases Request</field>
-        <field name="parent_id" ref="module_purchases_category"/>
-        <field name="description">Quản lý ứng dụng yêu cầu mua hàng</field>
-        <field name="sequence">10</field>
-    </record>
+<!--    <record id="module_purchases_request_category_user" model="ir.module.category">-->
+<!--        <field name="name">Purchases Request</field>-->
+<!--        <field name="parent_id" ref="module_purchases_category"/>-->
+<!--        <field name="description">Quản lý ứng dụng yêu cầu mua hàng</field>-->
+<!--        <field name="sequence">10</field>-->
+<!--    </record>-->
 
     <record id="purchase_request_group_user" model="res.groups">
-        <field name="name">Hệ thống</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/> <!--các nhóm khác để kế thừa quyền-->
-        <field name="category_id" ref="module_purchases_request_category_user"/> <!--tham chiếu đến module để tổ chức phân nhóm người dùng-->
-        <field name="comment">Người dùng sử dụng</field>
+        <field name="name">Người dùng yêu cầu mua hàng</field>
+<!--        <field name="implied_ids" eval="[(4, ref('purchases.purchase_request_group_user'))]"/> &lt;!&ndash;các nhóm khác để kế thừa quyền&ndash;&gt;-->
+        <field name="category_id" ref="purchases.module_purchases_category"/> <!--tham chiếu đến module để tổ chức phân nhóm người dùng-->
     </record>
 
     <record id="purchase_request_group_admin" model="res.groups">
-        <field name="name">Admin bộ phận</field>
-        <field name="implied_ids" eval="[(4, ref('purchase_request_group_user'))]"/>
-        <field name="category_id" ref="module_purchases_request_category_user"/>
+        <field name="name">Người quản lý yêu cầu mua hàng</field>
+        <field name="implied_ids" eval="[(4, ref('purchases.purchase_request_group_user'))]"/>
+        <field name="category_id" ref="purchases.module_purchases_category"/>
 <!--        <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]"/>-->
-        <field name="comment">ADmin sử dụng</field>
     </record>
 
 </odoo>

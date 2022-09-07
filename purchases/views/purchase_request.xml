@@ -76,7 +76,7 @@
                             groups="purchases.purchase_request_group_user"
                             confirm="Bạn muốn chuyển về dự thảo"/>
                     <button name="button_open_wizard_import_purchase_request" type="object" string="Import EXCEL"
-                            state="1"
+                            state="1" attrs="{'invisible': [('state','!=','1')]}"
                             class="oe_highlight"/>
                     <field name="state" widget="statusbar"/>
                 </header>

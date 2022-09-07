@@ -9,6 +9,7 @@ class PurchaseExcel(models.TransientModel):
     creation_date = fields.Date(string="Từ ngày", default=fields.Date.today())
     due_date = fields.Date(string="Đến ngày", default=fields.Date.today())
     lines = fields.One2many('purchase.xls.line', 'purchase_xls_id')
+    requests_by = fields.Many2one('purchase.request', 'requests_by')
 
     def view_report(self):
         self.lines.unlink()
@@ -25,13 +26,25 @@ class PurchaseExcel(models.TransientModel):
         }
 
     def create_line(self):
-        self.env.cr.execute(f"""select prl.request_id, pr.requests_by, prl.product_id, pr.creation_date,
+        if self.env.is_admin():
+            self.env.cr.execute(f"""select prl.request_id, pr.requests_by, prl.product_id, pr.creation_date,
+                                                    pr.due_date, prl.requests_quantity, prl.estimated_unit_price 
+                                                    from purchase_request_line prl
+                                                    inner join purchase_request pr
+                                                    ON prl.request_id = pr.id
+                                                    Where pr.creation_date between %s AND %s
+                                                    """,
+                                (self.creation_date, self.due_date))
+        else:
+            self.env.cr.execute(f"""select prl.request_id, pr.requests_by, prl.product_id, pr.creation_date,
                                         pr.due_date, prl.requests_quantity, prl.estimated_unit_price 
                                         from purchase_request_line prl
                                         inner join purchase_request pr
                                         ON prl.request_id = pr.id
-                                        Where pr.creation_date between %s AND %s""",
-                            (self.creation_date, self.due_date))
+                                        Where pr.creation_date between %s AND %s
+                                        AND pr.requests_by = %s
+                                        """,
+                                (self.creation_date, self.due_date, self.env.user.id))
         vals = self._cr.fetchall()
         for val in vals:
             self.env['purchase.xls.line'].create({
@@ -50,7 +63,7 @@ class PurchaseExcel(models.TransientModel):
 
         return {
             'type': 'ir.actions.act_url',
-            'url': ('/report/xlsx/purchases.request_report/%s' % self.id),
+            'url': ('/report/xlsx/purchases.report_xlsx_wizard/%s' % self.id),
             'target': 'new',
             'res_id': self.id,
         }
@@ -74,4 +87,4 @@ class PurchaseExcelLine(models.TransientModel):
     # delivered_quantity = fields.Float(string="Số lượng đã đưa", copy=False, readonly=True)
     estimated_unit_price = fields.Float(string="Đơn giá dự kiến")
     estimated_subtotal = fields.Float(string="Chi phí dự kiến")
-
+    # state =

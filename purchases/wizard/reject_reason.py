@@ -1,5 +1,5 @@
 from odoo import fields, models, api
-import datetime
+from datetime import datetime
 
 
 class RejectReason(models.TransientModel):
@@ -10,5 +10,9 @@ class RejectReason(models.TransientModel):
     purchase_request_id = fields.Many2one('purchase.request')
 
     def confirm(self):
-        self.purchase_request_id.state = '5'
+        active_obj = self.env[self.env.context.get('active_model')].browse(self.env.context.get('active_id'))
+        active_obj.write({'state': '5'})
+        self.purchase_request_id.write({
+            'reject_reason': str(datetime.now()) + ' ' + self.reason
+        })
 

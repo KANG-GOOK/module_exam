@@ -2,22 +2,22 @@ from odoo import models
 
 
 class ReportXLS(models.AbstractModel):
-    _name = 'report.purchases.report_xls'
+    _name = 'report.purchases.report_xlsx_wizard'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, obj):
         for i in obj:
-            report_name = i.name
-            state = i.state
+            report_name = 'Báo cáo mua hàng'
+            # state = i.state
             wait_trans = "Chờ duyệt"
             approved_trans = "Đã duyệt"
             done_trans = "Hoàn thành"
-            query = '''
-                            select prl.id, pp.default_code, prl.requests_quantity
-                            from purchase_request_line prl
-                            inner join product_product pp on pp.id = prl.product_id
-                        '''
-            self._cr.execute(query)
+            # query = '''
+            #                 select prl.id, pp.default_code, prl.requests_quantity
+            #                 from purchase_request_line prl
+            #                 inner join product_product pp on pp.id = prl.product_id
+            #             '''
+            # self._cr.execute(query)
             # One sheet by partner
             sheet = workbook.add_worksheet(report_name)
 
@@ -40,7 +40,7 @@ class ReportXLS(models.AbstractModel):
             sheet.write('E8', 'Trạng thái phiếu', format_4)
             sheet.write('F6', i.name, format_2)
             sheet.write('F7', i.creation_date.strftime('%d-%m-%Y'), format_2)
-            sheet.write('F8', i.state, format_2)
+            # sheet.write('F8', state, format_2)
 
             sheet.write(10, 0, 'STT', format_1)
             sheet.write(10, 1, 'Mã sản phẩm', format_1)
@@ -54,9 +54,10 @@ class ReportXLS(models.AbstractModel):
             col = 1
             n = 0
             sum_estimated_subtotal = 0
-            for line in i.request_line:
+            for line in i.lines:
                 row += 1
                 n += 1
+                line.estimated_subtotal = line.estimated_unit_price * line.requests_quantity
                 sum_estimated_subtotal += line.estimated_subtotal
                 sheet.write(row, 0, n, format_5)
                 sheet.write(row, 1, line.product_id.id, format_5)

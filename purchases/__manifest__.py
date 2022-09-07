@@ -10,7 +10,7 @@
     """,
     'category': 'Other',
     'author': 'Khanh HQ 720',
-    'depends': ['product', 'report_xlsx', 'purchase'],
+    'depends': ['product', 'report_xlsx'],
     'data': [
         'security/security.xml',
         'security/ir_rule.xml',
@@ -21,8 +21,9 @@
         'wizard/reject_reason_view.xml',
         'wizard/import_purchase_request_line.xml',
         'wizard/report_purchase.xml',
-        'report/report_xlsx.xml'
-        # 'report/purchase_xls_line.xml'
+        'report/report_xlsx.xml',
+        'report/purchase_xls_line.xml',
+        'report/report_xlsx_wizard.xml'
     ],
     'sequence': 2,
     'installable': True,  # odoo cho phép cài đặt module, và ngược lại

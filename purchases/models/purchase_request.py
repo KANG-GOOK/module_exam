@@ -1,6 +1,6 @@
 from odoo import models, fields, api, _
 import datetime
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class PurchaseRequest(models.Model):
@@ -25,6 +25,7 @@ class PurchaseRequest(models.Model):
                    ('6', 'Hủy')],
         string='State', default='1')
     request_line = fields.One2many('purchase.request.line', 'request_id', string='Request Lines')
+
     # purchase_id = fields.One2many('wizard.import.purchase.request.line')
 
     @api.model
@@ -93,3 +94,10 @@ class PurchaseRequest(models.Model):
                 'purchases.wizard_import_purchase_request_line_view_form').id or False,
             'context': {'default_purchase_id': self.id},
         }
+
+    def unlink(self):
+        for record in self:
+            if record.state == '4' or record.state == '5':
+                raise UserError(
+                    _('Bạn không thể xóa ở trạng thái hoàn thành'))
+        return super(PurchaseRequest, self).unlink()

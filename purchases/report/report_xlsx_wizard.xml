@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+            id="report_card_xlsx_wizard"
+            model="purchase.xls"
+            string="Excel"
+            report_type="xlsx"
+            name="purchases.report_xlsx_wizard"
+            file="purchases.report_xlsx_wizard"
+    />
+
+</odoo>

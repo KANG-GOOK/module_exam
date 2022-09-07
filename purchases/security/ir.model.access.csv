@@ -1,6 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_purchases_request_user,purchase.request user,model_purchase_request,purchase_request_group_user,1,1,1,0
-access_purchases_request_admin,purchase.request admin,model_purchase_request,purchase_request_group_admin,1,1,1,1
+access_purchases_request_user,purchase.request user,purchases.model_purchase_request,purchases.purchase_request_group_user,1,1,1,0
+access_purchases_request_admin,purchase.request admin,purchases.model_purchase_request,purchases.purchase_request_group_admin,1,1,1,1
 access_purchases_request_admin_line,purchase.request admin line,model_purchase_request_line,,1,1,1,1
 access_reject_reason_admin,reject.reason admin,model_reject_reason,,1,1,1,1
+access_wizard_import_purchase_request_line,wizard.import.purchase.request.line admin,model_wizard_import_purchase_request_line,,1,1,1,1
+access_purchase_xls_admin,purchase.xls admin,model_purchase_xls,,1,1,1,1
+access_purchase_xls_user,purchase.xls user,model_purchase_xls,,1,1,1,1
+access_purchase_xls_line_admin,purchase.xls.line admin,model_purchase_xls_line,,1,1,1,1
+access_purchase_xls_line_user,purchase.xls.line user,model_purchase_xls_line,,1,1,1,1
