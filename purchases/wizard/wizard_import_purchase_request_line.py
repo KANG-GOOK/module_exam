@@ -9,7 +9,7 @@ from datetime import datetime, date
 import xlsxwriter
 
 
-class WizardImportSaleOrderLine(models.TransientModel):
+class WizardImportPurchaseRequestLine(models.TransientModel):
     _name = 'wizard.import.purchase.request.line'
     _inherits = {'ir.attachment': 'attachment_id'}
 

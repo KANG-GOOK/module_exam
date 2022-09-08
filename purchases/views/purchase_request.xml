@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!--        Thêm menu truy cập model thông qua action-->
-    <menuitem name="PURCHASES MANAGEMENT"
-              id="purchases_menu_root"/>
-
-    <!--    Purchases Request-->
-    <menuitem id="purchases_menu"
-              action="purchase_request_action"
-              parent="purchases_menu_root"
-              name="Purchases Request"
-              sequence="1"/>
-
-    <menuitem id="purchase_request_menu_report"
-              parent="purchases_menu_root"
-              name="Report"
-              action="purchase_xls_wizard_form_view_action"
-    />
-
     <!--        Thêm dữ liệu vào bản ghi action-->
     <record id="purchase_request_action" model="ir.actions.act_window">
         <field name="name">Purchase request</field>
@@ -53,6 +36,7 @@
             <form string="Purchase Request Form">
                 <header>
                     <button name="request_approval" string="Gửi duyệt" type="object" class="btn-primary" state="1"
+                            groups="purchases.purchase_request_group_user"
                             attrs="{'invisible': [('state','!=','1')]}"
                             confirm="Bạn muốn gửi đơn đến admin để duyệt"/>
                     <button name="phe_duyet" string="Phê duyệt" type="object" class="btn-primary" state=""
@@ -154,5 +138,22 @@
         <field name="res_model">purchase.request</field>
         <field name="view_mode">tree,form,graph</field>
     </record>
+
+    <!--        Thêm menu truy cập model thông qua action-->
+    <menuitem name="PURCHASES MANAGEMENT"
+              id="purchases_menu_root"/>
+
+    <!--    Purchases Request-->
+    <menuitem id="purchases_menu"
+              action="purchase_request_action"
+              parent="purchases_menu_root"
+              name="Purchases Request"
+              sequence="1"/>
+
+    <menuitem id="purchase_request_menu_report"
+              parent="purchases_menu_root"
+              name="Report"
+              action="purchase_xls_wizard_form_view_action"
+              sequence="2"/>
 
 </odoo>

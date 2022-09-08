@@ -15,7 +15,7 @@ class PurchaseRequest(models.Model):
                               store=True)  # Tổng chi phí ??? Tổng các sản phẩm chọn dưới phần list
     creation_date = fields.Datetime(string="Creation date", default=fields.Datetime.now)  # Ngày yêu cầu
     due_date = fields.Datetime(string="Due date", default=fields.Datetime.now)  # Ngày cần cấp
-    approved_date = fields.Datetime(string="Approved date", readonly=True)  # (Ngày phê duyệt)
+    approved_date = fields.Datetime(string="Approved date", readonly=True, default=fields.Date.today())  # (Ngày phê duyệt)
     company = fields.Many2one('res.company', string='Company', required=True,
                               ondelete='cascade')  # mặc đih user công ty
     reject_reason = fields.Text(string="Reject Reason")  # Lý do từ chối

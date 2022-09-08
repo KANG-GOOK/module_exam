@@ -17,13 +17,13 @@
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/purchase_request.xml',
-        # 'views/purchase_request_line.xml',
-        'wizard/reject_reason_view.xml',
         'wizard/import_purchase_request_line.xml',
+        'report/report_xlsx_wizard.xml',
+        'wizard/reject_reason_view.xml',
         'wizard/report_purchase.xml',
         'report/report_xlsx.xml',
         'report/purchase_xls_line.xml',
-        'report/report_xlsx_wizard.xml'
+
     ],
     'sequence': 2,
     'installable': True,  # odoo cho phép cài đặt module, và ngược lại
