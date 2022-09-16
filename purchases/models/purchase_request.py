@@ -11,14 +11,16 @@ class PurchaseRequest(models.Model):
                                   default=lambda self: self.env.user)  # người tao
     department = fields.Many2one('res.users', string='Department', required=True,
                                  default=lambda self: self.env.user)  # Bộ phận
+    # department = fields.Many2one('hr.department', string='Parent Department', index=True,
+    #                              domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
     cost_total = fields.Float(string="Cost Total", compute='get_cost_total',
                               store=True)  # Tổng chi phí ??? Tổng các sản phẩm chọn dưới phần list
     creation_date = fields.Datetime(string="Creation date", default=fields.Datetime.now)  # Ngày yêu cầu
     due_date = fields.Datetime(string="Due date", default=fields.Datetime.now)  # Ngày cần cấp
-    approved_date = fields.Datetime(string="Approved date", readonly=True, default=fields.Date.today())  # (Ngày phê duyệt)
+    approved_date = fields.Datetime(string="Approved date", readonly=True)  # (Ngày phê duyệt)
     company = fields.Many2one('res.company', string='Company', required=True,
                               ondelete='cascade')  # mặc đih user công ty
-    reject_reason = fields.Text(string="Reject Reason")  # Lý do từ chối
+    reject_reason = fields.Text(string="Reject Reason", readonly=True)  # Lý do từ chối
     state = fields.Selection(
         selection=[('1', 'Dự thảo'), ('2', 'Chờ duyệt'), ('3', 'Đã duyệt'), ('4', 'Hoàn thành'),
                    ('5', 'Từ chối'),

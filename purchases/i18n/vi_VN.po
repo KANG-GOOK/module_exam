@@ -495,12 +495,12 @@ msgstr ""
 #. module: purchases
 #: model:ir.model.fields,field_description:purchases.field_purchase_request__reject_reason
 msgid "Reject Reason"
-msgstr ""
+msgstr "Lý do từ chối"
 
 #. module: purchases
 #: model:ir.actions.act_window,name:purchases.reject_reason_action
 msgid "Reject reason"
-msgstr ""
+msgstr "Lý do từ chối"
 
 #. module: purchases
 #: model:ir.ui.menu,name:purchases.purchase_request_menu_report
