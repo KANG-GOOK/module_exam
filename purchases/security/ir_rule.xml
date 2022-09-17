@@ -21,5 +21,36 @@
         </record>
         <!--        report-->
 
+<!--        <record id="rule_department_read" model="ir.rule">-->
+<!--            <field name="name">Department S</field>-->
+<!--            <field name="model_id" ref="purchases.model_purchase_request"/>-->
+<!--            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_user_gp1'))]"/>-->
+<!--            <field name="domain_force">[-->
+<!--                '|',-->
+<!--                    ('department.group_ids', 'in', [g.id for g in user.groups_id]),-->
+<!--                    '&amp;',-->
+<!--                        ('department.read_group_ids', '=', False),-->
+<!--                        ('department.group_ids', '=', False)]-->
+<!--                    </field>-->
+<!--            <field name="perm_read" eval="True"/>-->
+<!--            <field name="perm_write" eval="True"/>-->
+<!--            <field name="perm_create" eval="True"/>-->
+<!--            <field name="perm_unlink" eval="False"/>-->
+<!--        </record>-->
+
+        <record id="rule_department_id" model="ir.rule">
+            <field name="name">Rule department</field>
+            <field name="model_id" ref="purchases.model_purchase_request"/>
+            <field name="groups" eval="[(4, ref('purchases.purchase_request_group_user'))]"/>
+            <field name="domain_force">['|',
+                    ('department', 'in', user.groups_id.ids),
+('department','=',False)]
+                    </field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
     </data>
 </odoo>

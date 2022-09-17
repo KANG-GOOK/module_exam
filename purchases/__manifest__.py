@@ -10,7 +10,7 @@
     """,
     'category': 'Other',
     'author': 'Khanh HQ 720',
-    'depends': ['product', 'report_xlsx', 'hr_department'],
+    'depends': ['product', 'report_xlsx', 'account'],
     'data': [
         'security/security.xml',
         'security/ir_rule.xml',

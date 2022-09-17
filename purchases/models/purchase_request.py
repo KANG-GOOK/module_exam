@@ -6,13 +6,29 @@ from odoo.exceptions import ValidationError, UserError
 class PurchaseRequest(models.Model):
     _name = "purchase.request"
 
+    def _default_groups(self):
+        default_user = self.env.ref('base.default_user', raise_if_not_found=False)
+        x = []
+        # for i in self.env.user.groups_id.ids:
+        #     return (default_user or self.env['res.users']).sudo().self.env.user.groups_id.filtered(lambda x: x.name in ['Phòng GP1', 'Phòng GP2', 'Phòng GP3'])
+        #     if i == 47:
+        #         x = (default_user or self.env['res.users']).sudo().self.env.user.groups_id
+        #     elif i == 48:
+        #         x = (default_user or self.env['res.users']).sudo().self.env.user.groups_id
+        #     elif i == 49:
+        #         x = (default_user or self.env['res.users']).sudo().self.env.user.groups_id
+        # return x
+        # return (default_user or self.env['res.users']).sudo().self.env.user.groups_id.filtered(lambda x : x.name in ['Phòng GP1','Phòng GP2'])
+        return (default_user or self.env['res.users']).sudo().self.env.user.groups_id.filtered(
+            lambda x: x.name in ['Phòng GP1', 'Phòng GP2', 'Phòng GP3'])
+
     name = fields.Char(string="Votes Number", readonly=True, required=True, copy=False, default='New')
     requests_by = fields.Many2one('res.users', string='Request by', required=True,
                                   default=lambda self: self.env.user)  # người tao
-    department = fields.Many2one('res.users', string='Department', required=True,
-                                 default=lambda self: self.env.user)  # Bộ phận
-    # department = fields.Many2one('hr.department', string='Parent Department', index=True,
-    #                              domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
+    # department = fields.Many2one('res.users', string='Department', required=True,
+    #                              default=lambda self: self.env.user)  # Bộ phận
+    department = fields.Many2many('res.groups', string="Department", readonly=True,
+                                  default=_default_groups)
     cost_total = fields.Float(string="Cost Total", compute='get_cost_total',
                               store=True)  # Tổng chi phí ??? Tổng các sản phẩm chọn dưới phần list
     creation_date = fields.Datetime(string="Creation date", default=fields.Datetime.now)  # Ngày yêu cầu
@@ -27,7 +43,8 @@ class PurchaseRequest(models.Model):
                    ('6', 'Hủy')],
         string='State', default='1')
     request_line = fields.One2many('purchase.request.line', 'request_id', string='Request Lines')
-
+    purchase_count = fields.Integer(string="Đơn mua hàng", compute='_compute_purchase_count')
+    purchase_order_id = fields.One2many("purchase.order", 'request_id')
     # purchase_id = fields.One2many('wizard.import.purchase.request.line')
 
     @api.model
@@ -44,8 +61,28 @@ class PurchaseRequest(models.Model):
 
     # chờ duyệt => đã duyệt
     def phe_duyet(self):
-        self.state = '3'
-        self.approved_date = datetime.datetime.now()
+        # self.state = '3'
+        # self.approved_date = datetime.datetime.now()
+        for rec in self:
+            rec.state = '3'
+            rec.approved_date = datetime.datetime.now()
+            order_vals = {
+                'partner_id': rec.requests_by.id,
+                'request_id': rec.id
+            }
+            vals = []
+            for line in rec.request_line:
+                val = {
+                    'name': 'Purchase Order',
+                    'product_id': line.product_id.id,
+                    'product_qty': line.requests_quantity,
+                    'product_uom': line.product_uom_id.id,
+                    'price_unit': line.estimated_unit_price,
+                    'date_planned': line.due_date.strftime('%Y-%m-%d')
+                }
+                vals.append((0, 0, val))
+            order_vals['order_line'] = vals
+            rec.env['purchase.order'].create(order_vals)
 
     # chờ duyệt => từ chối
     def tu_choi(self):
@@ -97,9 +134,24 @@ class PurchaseRequest(models.Model):
             'context': {'default_purchase_id': self.id},
         }
 
+    def _compute_purchase_count(self):
+        for rec in self:
+            purchase_count = self.env['purchase.order'].search_count([('request_id', '=', rec.id)])
+            rec.purchase_count = purchase_count
+
     def unlink(self):
         for record in self:
             if record.state == '4' or record.state == '5':
                 raise UserError(
                     _('Bạn không thể xóa ở trạng thái hoàn thành'))
         return super(PurchaseRequest, self).unlink()
+
+    def action_count(self):
+        return {
+            'name': 'Đơn mua hàng',
+            'res_model': 'purchase.order',
+            'type': 'ir.actions.act_window',
+            'domain': [('id', '=', self.purchase_order_id.id)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
